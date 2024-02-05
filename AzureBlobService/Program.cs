@@ -1,4 +1,4 @@
-﻿using AzureBlobService;
+﻿using AzureBlobService.AzureQueue;
 
 string connectionString = "";
 
@@ -22,7 +22,7 @@ string connectionString = "";
 //await blobServiceHandler.UpdateBlobAsync("dotnet-program", $"2024/01/30/0a2895d3-7b67-4eb3-982b-f0750261130a", @"C:\Users\CC378\Downloads\TestLogo.jpg");
 
 // Azure Table Service
-TableServiceHandler<Employee> tableServiceHandler = new TableServiceHandler<Employee>(connectionString);
+//TableServiceHandler<Employee> tableServiceHandler = new TableServiceHandler<Employee>(connectionString);
 
 //await tableServiceHandler.CreateTableIfNotExistAsync("Employees");
 
@@ -49,5 +49,34 @@ TableServiceHandler<Employee> tableServiceHandler = new TableServiceHandler<Empl
 //await tableServiceHandler.UpdateEntityAsync("Employees", employee, employee.ETag);
 
 //await tableServiceHandler.DeleteEntityAsync("Employees", "Software Engineer IV", "1009");
+
+// Azure Queue Service
+
+//QueueServiceHandler queueServiceHandler = new QueueServiceHandler(connectionString);
+
+//await queueServiceHandler.CreateIfNotExistsAsync("dotnet-queue");
+
+//await queueServiceHandler.SendMessageAsync("dotnet-queue", "MessageMessageMessageMessageMessage2", false);
+
+//PeekedMessageModel peekedMessageModel = await queueServiceHandler.PeekMessageAsync("dotnet-queue");
+//Console.WriteLine($"MessageID: {peekedMessageModel.MessageId}, MessageBody: {peekedMessageModel.Body}");
+
+//PeekedMessageModel[] peekedMessageModel = await queueServiceHandler.PeekMessagesAsync("dotnet-queue", 3);
+//int i = 0;
+//peekedMessageModel.ToList().ForEach(x => Console.WriteLine($"Index:{i++}, MessageID: {x.MessageId}, MessageBody: {x.Body}"));
+
+//QueueMessageModel[] queueMessageModel = await queueServiceHandler.ReceiveMessagesAsync("dotnet-queue", 2, TimeSpan.FromSeconds(10));
+//int i = 0;
+//queueMessageModel.ToList().ForEach(x => Console.WriteLine($"Index:{i++}, MessageID: {x.MessageId}, MessageBody: {x.Body}"));
+//queueMessageModel.ToList().ForEach(async x => await queueServiceHandler.DeleteMessageAsync("dotnet-queue", x.MessageId, x.PopReceipt));
+
+//QueueMessageModel[] queueMessageModel = await queueServiceHandler.ReceiveMessagesAsync("dotnet-queue", 2, TimeSpan.FromSeconds(10));
+//int i = 0;
+//queueMessageModel.ToList().ForEach(x => Console.WriteLine($"Index:{i++}, MessageID: {x.MessageId}, MessageBody: {x.Body}"));
+//await Parallel.ForEachAsync(queueMessageModel, async (x, y) =>
+//{
+//    await queueServiceHandler.UpdateMessageAsync("dotnet-queue", x.MessageId, x.PopReceipt, x.Body + " UPDATED");
+//});
+
 
 Console.WriteLine("Hello, World!");
