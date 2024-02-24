@@ -157,5 +157,14 @@ namespace AzureBlobService
             await blobClient.UploadAsync(sourcePath, blobUploadOptions);
             await blobLeaseClient.ReleaseAsync();
         }
+
+        public async Task CopyBlobAsync(string containerName, string blobName, string sourcePath)
+        {
+            await CreateContainerAsync(containerName);
+            BlobContainerClient blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            BlobClient blobClient = blobContainerClient.GetBlobClient(blobName);
+            var sourceUri = new Uri(sourcePath);
+            await blobClient.SyncCopyFromUriAsync(sourceUri);
+        }
     }
 }

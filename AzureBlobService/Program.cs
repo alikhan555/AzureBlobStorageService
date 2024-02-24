@@ -1,9 +1,10 @@
-﻿using AzureBlobService.AzureQueue;
+﻿using AzureBlobService;
+using System.Diagnostics;
 
 string connectionString = "";
 
 // Azure Blob Service
-//BlobServiceHandler blobServiceHandler = new BlobServiceHandler(connectionString);
+BlobServiceHandler blobServiceHandler = new BlobServiceHandler(connectionString);
 
 //await blobServiceHandler.CreateContainerAsync("dotnet-program");
 //blobServiceHandler.GetAllContainersName().ForEach(x => Console.WriteLine(x));
@@ -20,6 +21,18 @@ string connectionString = "";
 //await blobServiceHandler.SetBlobMatadataAsync("dotnet-program", $"2024/01/30/0a2895d3-7b67-4eb3-982b-f0750261130a", new Dictionary<string, string> { { "FirstKey", "FirstValue" }, { "SecondKey", "SecondValue" } });
 
 //await blobServiceHandler.UpdateBlobAsync("dotnet-program", $"2024/01/30/0a2895d3-7b67-4eb3-982b-f0750261130a", @"C:\Users\CC378\Downloads\TestLogo.jpg");
+
+//List<string> urls = blobServiceHandler.GetAllBlobsName("ContainerName").Select(x => $"SourceURL").ToList();
+
+//Stopwatch stopwatch = Stopwatch.StartNew();
+//stopwatch.Start();
+//List<Task> tasks = urls.Select(x => blobServiceHandler.CopyBlobAsync("ContainerName", Guid.NewGuid().ToString(), x)).ToList();
+//await Task.WhenAll(tasks);
+//stopwatch.Stop();
+
+//Console.WriteLine(stopwatch.ElapsedMilliseconds);
+
+
 
 // Azure Table Service
 //TableServiceHandler<Employee> tableServiceHandler = new TableServiceHandler<Employee>(connectionString);
