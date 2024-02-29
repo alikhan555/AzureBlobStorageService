@@ -1,15 +1,21 @@
 ﻿using AzureBlobService;
 using System.Diagnostics;
 
-string connectionString = "";
+//string connectionString = "";
+
+string tenantId = "";
+string clientId = "";
+string clientSecret = "";
+string blobUrl = "";
 
 // Azure Blob Service
-BlobServiceHandler blobServiceHandler = new BlobServiceHandler(connectionString);
+//BlobServiceHandler blobServiceHandler = new BlobServiceHandler(connectionString);
+BlobServiceHandler blobServiceHandler = new BlobServiceHandler(blobUrl, tenantId, clientId, clientSecret);
 
 //await blobServiceHandler.CreateContainerAsync("dotnet-program");
 //blobServiceHandler.GetAllContainersName().ForEach(x => Console.WriteLine(x));
-//await blobServiceHandler.UploadBlobAsync("dotnet-program", $"2024/01/30/{Guid.NewGuid()}", @"C:\Users\CC378\Downloads\TestLogo2.jpg");
-//await blobServiceHandler.DownloadToAsync("dotnet-program", $"2024/01/30/4bdc97cf-eaca-45e8-8bb3-a07922bd80d6", @"C:\Users\CC378\Downloads\TestLogo222.jpg");
+//await blobServiceHandler.UploadBlobAsync("dotnet-program", $"testlogo00002.jpg", @"C:\Users\CC378\Downloads\TestLogo0001.jpg");
+//await blobServiceHandler.DownloadToAsync("dotnet-program", $"TestLogo2.jpg", @"C:\Users\CC378\Downloads\TestLogo0001.jpg");
 //await blobServiceHandler.DeleteIfExistsAsync("dotnet-program", $"2024/01/30/4bdc97cf-eaca-45e8-8bb3-a07922bd80d6");
 //string url = await blobServiceHandler.GetBlobUrl("dotnet-program", $"2024/01/30/6ead8bb8-70e2-45e3-b108-c08a54280a9a", TimeSpan.FromSeconds(120)); Console.WriteLine(url);
 //blobServiceHandler.GetAllBlobsName("dotnet-program").ForEach(x => Console.WriteLine(x));

@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs.Specialized;
@@ -13,6 +14,13 @@ namespace AzureBlobService
         public BlobServiceHandler(string connectionString)
         {
             _blobServiceClient = new BlobServiceClient(connectionString);
+        }
+
+        public BlobServiceHandler(string uri, string tenantId, string clientId, string clientSecret)
+        {
+            Uri _uri = new Uri(uri);
+            ClientSecretCredential credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
+            _blobServiceClient = new BlobServiceClient(_uri, credential);
         }
 
         public async Task CreateContainerAsync(string containerName)
